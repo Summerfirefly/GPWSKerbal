@@ -210,7 +210,7 @@ namespace GPWSKerbal
                 {
                     StopAllCoroutines();
                     pullUp.audio.Play();
-                    //Debug.Log("[GPWSKerbal]Pull up!");
+                    Debug.Log("[GPWSKerbal]Pull up!");
                 }
                 return;
             }
