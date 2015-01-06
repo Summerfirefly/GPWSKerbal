@@ -1,0 +1,18 @@
+v1.3
+*Unit of altitude announcements has been changed from meters to feet
+*Added altitude announcement for 2500 (Now "2500" means "2500 feet")
+*Removed "TOO LOW TERRAIN" temporarily (It is being rebuilt...)
+
+===============================================v1.0 to v1.2 By Cryphonus==================================================
+v1.2
+*Added 50 40 30 20 10 altitude announcements (be gentle at the runway approach, dont try to land like a rock falling from the sky)
+*fixed weird doppler effects
+
+v1.1 
+*Changed "WHOOP WHOOP PULL UP" sound
+*Added altitude announcements for 1000 500 and 100 - As these are for landings and approaches you should be descending to hear these announcements.
+*Added "TOO LOW TERRAIN" (If you go too fast on the runway this warning will be announced i will fix this soon)
+
+v1.0 
+*Initial Release
+==========================================================================================================================
