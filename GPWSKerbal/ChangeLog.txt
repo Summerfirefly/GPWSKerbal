@@ -1,5 +1,6 @@
 v1.3
 *Unit of altitude announcements has been changed from meters to feet
+*Rebuilt judgment for "WHOOP WHOOP PULL UP"
 *Added altitude announcement for 2500 (Now "2500" means "2500 feet")
 *Removed "TOO LOW TERRAIN" temporarily (It is being rebuilt...)
 

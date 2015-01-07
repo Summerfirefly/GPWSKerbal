@@ -8,7 +8,7 @@ namespace GPWSKerbal
 {
     public class GPWSKerbal: PartModule
     {
-        double m_Height = 0;
+        double m_Height = 0, terr_verticalSpeed = 0, m_height_backup = 0;
         GPWS_GUI m_gui = new GPWS_GUI();
 
         #region Sounds
@@ -193,18 +193,9 @@ namespace GPWSKerbal
 
             if (!m_gui.isGPWSWork) return;
 
-            if (vessel.terrainAltitude < 0)
-            {
-                m_Height = vessel.mainBody.GetAltitude(vessel.CoM);
-            }
-            else
-            {
-                m_Height = vessel.mainBody.GetAltitude(vessel.CoM) - vessel.terrainAltitude;
-            }
-
             ResetHeightFlag();
 
-            if (FlightGlobals.ActiveVessel.verticalSpeed < -50 && m_Height < 500)
+            if (terr_verticalSpeed < -50 && m_Height < 500)
             {
                 if (pullUp.audio.isPlaying == false)
                 {
@@ -349,6 +340,22 @@ namespace GPWSKerbal
             
             pullUp.audio.Stop();
             terrain.audio.Stop();
+        }
+        #endregion
+
+        #region FixedUpdate()
+        public void FixedUpdate()
+        {
+            m_height_backup = m_Height;
+            if (vessel.terrainAltitude < 0)
+            {
+                m_Height = vessel.mainBody.GetAltitude(vessel.CoM);
+            }
+            else
+            {
+                m_Height = vessel.mainBody.GetAltitude(vessel.CoM) - vessel.terrainAltitude;
+            }
+            terr_verticalSpeed = (m_Height - m_height_backup) / TimeWarp.fixedDeltaTime;
         }
         #endregion
 
