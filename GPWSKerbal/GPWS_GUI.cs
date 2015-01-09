@@ -30,7 +30,7 @@ namespace GPWSKerbal
             infomation.normal.textColor = Color.white;
             infomation.fontStyle = FontStyle.Normal;
             infomation.fixedWidth = 230;
-            windowPosition = GUILayout.Window(windowID, windowPosition, Window, "GPWS - Control");
+            windowPosition = GUILayout.Window(windowID, windowPosition, Window, "GPWS - Controller");
         }
 
         public void Window(int windowID)

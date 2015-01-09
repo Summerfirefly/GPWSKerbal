@@ -1,7 +1,9 @@
 v1.3
-*Unit of altitude announcements has been changed from meters to feet
+*Fixed for KSP 0.90
+*Unit of altitude announcements has been changed from meters to feet(I think it will be more realistic...And you should be more gentle at the runway approach)
+*Replace altitude(sea level) with radar altitude
 *Rebuilt judgment for "WHOOP WHOOP PULL UP"
-*Added altitude announcement for 2500 (Now "2500" means "2500 feet")
+*Added altitude announcement for 2500 (Now "TWENTY FIVE HUNDRED" means "2500 feet"...)
 *Removed "TOO LOW TERRAIN" temporarily (It is being rebuilt...)
 
 ===============================================v1.0 to v1.2 By Cryphonus==================================================

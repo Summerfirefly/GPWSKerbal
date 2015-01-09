@@ -83,7 +83,7 @@ namespace GPWSKerbal
             pullUp.audio.volume = GameSettings.SHIP_VOLUME;
             pullUp.audio.maxDistance = 10;
             pullUp.audio.Stop();
-            pullUp.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/warnpullup");
+            pullUp.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/pullup");
             pullUp.audio.loop = false;
             
             terrain.audio = gameObject.AddComponent<AudioSource>();
@@ -186,14 +186,26 @@ namespace GPWSKerbal
         }
         #endregion
 
-        #region Update()
-        public void Update()
+        #region FixedUpdate()
+        public void FixedUpdate()
         {
             m_gui.stringChange();
 
             if (!m_gui.isGPWSWork) return;
+            if (FlightGlobals.ActiveVessel.checkLanded() || FlightGlobals.ActiveVessel.checkSplashed()) return;
 
             ResetHeightFlag();
+            
+            m_height_backup = m_Height;
+            if (vessel.terrainAltitude < 0)
+            {
+                m_Height = vessel.mainBody.GetAltitude(vessel.CoM);
+            }
+            else
+            {
+                m_Height = vessel.mainBody.GetAltitude(vessel.CoM) - vessel.terrainAltitude;
+            }
+            terr_verticalSpeed = (m_Height - m_height_backup) / Time.fixedDeltaTime;
 
             if (terr_verticalSpeed < -50 && m_Height < 500)
             {
@@ -201,11 +213,10 @@ namespace GPWSKerbal
                 {
                     StopAllCoroutines();
                     pullUp.audio.Play();
-                    Debug.Log("[GPWSKerbal]Pull up!");
                 }
                 return;
             }
-            
+
             if (m_Height < 770 && m_Height > 750 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (twentyfiveHundred.audio.isPlaying == false && twentyfiveHundredFlag == 0)
@@ -216,7 +227,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 310 && m_Height > 290 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (thousand.audio.isPlaying == false && thousandflag == 0)
@@ -227,7 +238,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 160 && m_Height > 140 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (fivehundred.audio.isPlaying == false && fivehundredflag == 0)
@@ -238,7 +249,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 127 && m_Height > 107 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (fourHundred.audio.isPlaying == false && fourHundredFlag == 0)
@@ -249,7 +260,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 97 && m_Height > 77 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (threeHundred.audio.isPlaying == false && threeHundredFlag == 0)
@@ -260,7 +271,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 68 && m_Height > 48 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (twoHundred.audio.isPlaying == false && twoHundredFlag == 0)
@@ -271,7 +282,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 35 && m_Height > 20 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (hundred.audio.isPlaying == false && hundredflag == 0)
@@ -282,7 +293,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 18 && m_Height > 14 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (fifty.audio.isPlaying == false && fiftyFlag == 0)
@@ -293,7 +304,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 14 && m_Height > 10.5 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (forty.audio.isPlaying == false && fortyFlag == 0)
@@ -304,7 +315,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 10.5 && m_Height > 7.5 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (thirty.audio.isPlaying == false && thirtyFlag == 0)
@@ -315,7 +326,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 7.5 && m_Height > 4.5 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (twenty.audio.isPlaying == false && twentyFlag == 0)
@@ -326,7 +337,7 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             if (m_Height < 4 && m_Height > 2.9 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
             {
                 if (ten.audio.isPlaying == false && tenFlag == 0)
@@ -337,25 +348,9 @@ namespace GPWSKerbal
                 }
                 return;
             }
-            
+
             pullUp.audio.Stop();
             terrain.audio.Stop();
-        }
-        #endregion
-
-        #region FixedUpdate()
-        public void FixedUpdate()
-        {
-            m_height_backup = m_Height;
-            if (vessel.terrainAltitude < 0)
-            {
-                m_Height = vessel.mainBody.GetAltitude(vessel.CoM);
-            }
-            else
-            {
-                m_Height = vessel.mainBody.GetAltitude(vessel.CoM) - vessel.terrainAltitude;
-            }
-            terr_verticalSpeed = (m_Height - m_height_backup) / TimeWarp.fixedDeltaTime;
         }
         #endregion
 
