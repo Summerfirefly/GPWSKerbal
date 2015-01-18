@@ -38,7 +38,7 @@ namespace GPWSKerbal
             GUILayout.BeginVertical();
             GUILayout.Label("GPWS state: " + stateInfo, infomation);
             GUILayout.Label("Gear Inhibit: " + gearInfo, infomation);
-            GUILayout.Label("Terr. Inhibit: " + terrInfo, infomation);
+            GUILayout.Label("Terrain Inhibit: " + terrInfo, infomation);
             GUILayout.EndVertical();
 
             GUILayout.BeginHorizontal();

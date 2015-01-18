@@ -47,29 +47,29 @@ namespace GPWSKerbal
         #region ResetHeightFlag()
         public void ResetHeightFlag()
         {
-            if (m_Height > 770)
+            if (m_Height > 775)
                 twentyfiveHundredFlag = 0;
-            else if (m_Height > 310)
+            else if (m_Height > 315)
                 thousandflag = 0;
-            else if (m_Height > 160)
+            else if (m_Height > 165)
                 fivehundredflag = 0;
-            else if (m_Height > 127)
+            else if (m_Height > 132)
                 fourHundredFlag = 0;
-            else if (m_Height > 97)
+            else if (m_Height > 102)
                 threeHundredFlag = 0;
-            else if (m_Height > 68)
+            else if (m_Height > 73)
                 twoHundredFlag = 0;
-            else if (m_Height > 35)
+            else if (m_Height > 40)
                 hundredflag = 0;
-            else if (m_Height > 18)
+            else if (m_Height > 21)
                 fiftyFlag = 0;
-            else if (m_Height > 14)
+            else if (m_Height > 17)
                 fortyFlag = 0;
-            else if (m_Height > 10.5)
+            else if (m_Height > 13.5)
                 thirtyFlag = 0;
-            else if (m_Height > 7.5)
+            else if (m_Height > 9.5)
                 twentyFlag = 0;
-            else if (m_Height > 4)
+            else if (m_Height > 6)
                 tenFlag = 0;
         }
         #endregion
@@ -207,7 +207,7 @@ namespace GPWSKerbal
             }
             terr_verticalSpeed = (m_Height - m_height_backup) / Time.fixedDeltaTime;
 
-            if (terr_verticalSpeed < -50 && m_Height < 500)
+            if (terr_verticalSpeed < -50 && m_Height < 350)
             {
                 if (pullUp.audio.isPlaying == false)
                 {
@@ -217,7 +217,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 770 && m_Height > 750 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 770 && m_Height > 750 && terr_verticalSpeed < 0)
             {
                 if (twentyfiveHundred.audio.isPlaying == false && twentyfiveHundredFlag == 0)
                 {
@@ -228,7 +228,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 310 && m_Height > 290 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 310 && m_Height > 290 && terr_verticalSpeed < 0)
             {
                 if (thousand.audio.isPlaying == false && thousandflag == 0)
                 {
@@ -239,7 +239,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 160 && m_Height > 140 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 160 && m_Height > 140 && terr_verticalSpeed < 0)
             {
                 if (fivehundred.audio.isPlaying == false && fivehundredflag == 0)
                 {
@@ -250,7 +250,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 127 && m_Height > 107 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 127 && m_Height > 107 && terr_verticalSpeed < 0)
             {
                 if (fourHundred.audio.isPlaying == false && fourHundredFlag == 0)
                 {
@@ -261,7 +261,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 97 && m_Height > 77 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 97 && m_Height > 77 && terr_verticalSpeed < 0)
             {
                 if (threeHundred.audio.isPlaying == false && threeHundredFlag == 0)
                 {
@@ -272,7 +272,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 68 && m_Height > 48 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 68 && m_Height > 48 && terr_verticalSpeed < 0)
             {
                 if (twoHundred.audio.isPlaying == false && twoHundredFlag == 0)
                 {
@@ -283,7 +283,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 35 && m_Height > 20 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 35 && m_Height > 20 && terr_verticalSpeed < 0)
             {
                 if (hundred.audio.isPlaying == false && hundredflag == 0)
                 {
@@ -294,7 +294,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 18 && m_Height > 14 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 18 && m_Height > 14 && terr_verticalSpeed < 0)
             {
                 if (fifty.audio.isPlaying == false && fiftyFlag == 0)
                 {
@@ -305,7 +305,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 14 && m_Height > 10.5 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 14 && m_Height > 10.5 && terr_verticalSpeed < 0)
             {
                 if (forty.audio.isPlaying == false && fortyFlag == 0)
                 {
@@ -316,7 +316,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 10.5 && m_Height > 7.5 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 10.5 && m_Height > 7.5 && terr_verticalSpeed < 0)
             {
                 if (thirty.audio.isPlaying == false && thirtyFlag == 0)
                 {
@@ -327,7 +327,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 7.5 && m_Height > 4.5 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 7.5 && m_Height > 4.5 && terr_verticalSpeed < 0)
             {
                 if (twenty.audio.isPlaying == false && twentyFlag == 0)
                 {
@@ -338,7 +338,7 @@ namespace GPWSKerbal
                 return;
             }
 
-            if (m_Height < 4 && m_Height > 2.9 && FlightGlobals.ActiveVessel.verticalSpeed < 0)
+            if (m_Height < 4 && m_Height > 2.9 && terr_verticalSpeed < 0)
             {
                 if (ten.audio.isPlaying == false && tenFlag == 0)
                 {
