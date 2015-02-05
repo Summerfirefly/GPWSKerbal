@@ -8,7 +8,7 @@ namespace GPWSKerbal
 {
     public class GPWSKerbal: PartModule
     {
-        double m_Height = 0, terr_verticalSpeed = 0, m_height_backup = 0;
+        public double m_Height = 0, terr_verticalSpeed = 0, m_height_backup = 0;
         GPWS_GUI m_gui = new GPWS_GUI();
 
         #region Sounds
