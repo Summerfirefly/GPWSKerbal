@@ -14,6 +14,7 @@ namespace GPWSKerbal
         #region Sounds
         public FXGroup pullUp = null; // Make sure this is public so it can be initialised internally.
         public FXGroup terrain = null;
+        public FXGroup bankAngle = null;
         public FXGroup twentyfiveHundred = null;
         public FXGroup thousand = null;
         public FXGroup fivehundred = null;
@@ -92,6 +93,13 @@ namespace GPWSKerbal
             terrain.audio.Stop();
             terrain.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/toolowterrain");
             terrain.audio.loop = false;
+
+            bankAngle.audio = gameObject.AddComponent<AudioSource>();
+            bankAngle.audio.volume = GameSettings.SHIP_VOLUME;
+            bankAngle.audio.maxDistance = 10;
+            bankAngle.audio.Stop();
+            bankAngle.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/bank angle");
+            bankAngle.audio.loop = false;
 
             sinkrate.audio = gameObject.AddComponent<AudioSource>();
             sinkrate.audio.volume = GameSettings.SHIP_VOLUME;
@@ -213,6 +221,25 @@ namespace GPWSKerbal
                 {
                     StopAllCoroutines();
                     pullUp.audio.Play();
+                }
+                return;
+            }
+
+            if (FlightGlobals.ActiveVessel.ctrlState.roll > 35 && m_Height > 42)
+            {
+                if (bankAngle.audio.isPlaying == false)
+                {
+                    StopAllCoroutines();
+                    bankAngle.audio.Play();
+                }
+                return;
+            }
+            else if (FlightGlobals.ActiveVessel.ctrlState.roll > 15 && m_Height <= 42)
+            {
+                if (bankAngle.audio.isPlaying == false)
+                {
+                    StopAllCoroutines();
+                    bankAngle.audio.Play();
                 }
                 return;
             }
