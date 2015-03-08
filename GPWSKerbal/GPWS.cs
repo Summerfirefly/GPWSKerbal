@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace GPWSKerbal
 {
-    public class GPWSKerbal: PartModule
+    public class GPWS : PartModule
     {
         public double m_Height = 0, terr_verticalSpeed = 0, m_height_backup = 0;
-        GPWS_GUI m_gui = new GPWS_GUI();
+        bool isAvailable = true;
+        GPWS_GUI mGUI = new GPWS_GUI();
+        public static GPWS sActiveModule = null;
 
         #region Sounds
         public FXGroup pullUp = null; // Make sure this is public so it can be initialised internally.
-        public FXGroup terrain = null;
-        public FXGroup bankAngle = null;
         public FXGroup twentyfiveHundred = null;
         public FXGroup thousand = null;
         public FXGroup fivehundred = null;
@@ -27,7 +27,6 @@ namespace GPWSKerbal
         public FXGroup thirty = null;
         public FXGroup twenty = null;
         public FXGroup ten = null;
-        public FXGroup sinkrate = null;
         #endregion
 
         #region Flags
@@ -86,27 +85,6 @@ namespace GPWSKerbal
             pullUp.audio.Stop();
             pullUp.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/pullup");
             pullUp.audio.loop = false;
-            
-            terrain.audio = gameObject.AddComponent<AudioSource>();
-            terrain.audio.volume = GameSettings.SHIP_VOLUME;
-            terrain.audio.maxDistance = 10;
-            terrain.audio.Stop();
-            terrain.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/toolowterrain");
-            terrain.audio.loop = false;
-
-            bankAngle.audio = gameObject.AddComponent<AudioSource>();
-            bankAngle.audio.volume = GameSettings.SHIP_VOLUME;
-            bankAngle.audio.maxDistance = 10;
-            bankAngle.audio.Stop();
-            bankAngle.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/bank angle");
-            bankAngle.audio.loop = false;
-
-            sinkrate.audio = gameObject.AddComponent<AudioSource>();
-            sinkrate.audio.volume = GameSettings.SHIP_VOLUME;
-            sinkrate.audio.maxDistance = 10;
-            sinkrate.audio.Stop();
-            sinkrate.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/sinkrate");
-            sinkrate.audio.loop = false;
 
             twentyfiveHundred.audio = gameObject.AddComponent<AudioSource>();
             twentyfiveHundred.audio.volume = GameSettings.SHIP_VOLUME;
@@ -197,13 +175,14 @@ namespace GPWSKerbal
         #region FixedUpdate()
         public void FixedUpdate()
         {
-            m_gui.stringChange();
+            mGUI.stringChange();
 
-            if (!m_gui.isGPWSWork) return;
+            if (!isAvailable) return;
+            if (!mGUI.isGPWSWork) return;
             if (FlightGlobals.ActiveVessel.checkLanded() || FlightGlobals.ActiveVessel.checkSplashed()) return;
 
             ResetHeightFlag();
-            
+
             m_height_backup = m_Height;
             if (vessel.terrainAltitude < 0)
             {
@@ -221,25 +200,6 @@ namespace GPWSKerbal
                 {
                     StopAllCoroutines();
                     pullUp.audio.Play();
-                }
-                return;
-            }
-
-            if (FlightGlobals.ActiveVessel.ctrlState.roll > 35 && m_Height > 42)
-            {
-                if (bankAngle.audio.isPlaying == false)
-                {
-                    StopAllCoroutines();
-                    bankAngle.audio.Play();
-                }
-                return;
-            }
-            else if (FlightGlobals.ActiveVessel.ctrlState.roll > 15 && m_Height <= 42)
-            {
-                if (bankAngle.audio.isPlaying == false)
-                {
-                    StopAllCoroutines();
-                    bankAngle.audio.Play();
                 }
                 return;
             }
@@ -377,21 +337,46 @@ namespace GPWSKerbal
             }
 
             pullUp.audio.Stop();
-            terrain.audio.Stop();
         }
         #endregion
+
+        public override void OnUpdate()
+        {
+            if (sActiveModule == null && this.vessel == FlightGlobals.ActiveVessel)
+            {
+                sActiveModule = this;
+            }
+
+            if (sActiveModule == this)
+            {
+                isAvailable = true;
+            }
+            else
+            {
+                isAvailable = false;
+            }
+
+            if (sActiveModule != null && sActiveModule.vessel != FlightGlobals.ActiveVessel)
+            {
+                sActiveModule = null;
+            }
+
+            base.OnUpdate();
+        }
 
         [KSPEvent(name = "GPWS_GUIDisplayControl", guiActive = true, guiName = "Show GPWS GUI", active = true, category = "GPWS_GUI")]
         public void DisplayGPWS_GUI()
         {
-            m_gui.showGUI = true;
+            mGUI.showGUI = true;
         }
 
         #region OnGUI()
         public void OnGUI()
         {
-            if (m_gui.showGUI)
-                m_gui.DrawWindow();
+            if (mGUI.showGUI)
+            {
+                mGUI.DrawWindow();
+            }
         }
         #endregion
     }

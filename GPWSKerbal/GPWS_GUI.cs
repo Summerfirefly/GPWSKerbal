@@ -11,7 +11,6 @@ namespace GPWSKerbal
         public Rect windowPosition = new Rect(50, 50, 100, 90);
         int windowID = new System.Random().Next();
         GUIStyle infomation;
-        GPWSKerbal GPWS = new GPWSKerbal();
         public string stateInfo = "On", gearInfo = "Normal", terrInfo = "Normal";
         public bool isGPWSWork = true, showGUI = false;
 
@@ -30,13 +29,12 @@ namespace GPWSKerbal
             infomation.normal.textColor = Color.white;
             infomation.fontStyle = FontStyle.Normal;
             infomation.fixedWidth = 230;
-            windowPosition = GUILayout.Window(windowID, windowPosition, Window, "GPWS - Controller");
+            windowPosition = GUILayout.Window(windowID, windowPosition, Window, "GPWS - Setting");
         }
 
         public void Window(int windowID)
         {
             GUILayout.BeginVertical();
-            GUILayout.Label("Radar Altitude: " + GPWS.m_Height, infomation);
             GUILayout.Label("");
             GUILayout.Label("GPWS On/Off: " + stateInfo, infomation);
             GUILayout.Label("Gear Inhibit: " + gearInfo, infomation);
