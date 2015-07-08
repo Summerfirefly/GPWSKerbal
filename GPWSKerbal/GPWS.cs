@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -44,7 +43,6 @@ namespace GPWSKerbal
         public int tenFlag = 0;
         #endregion
 
-        #region ResetHeightFlag()
         public void ResetHeightFlag()
         {
             if (m_Height > 775)
@@ -72,9 +70,7 @@ namespace GPWSKerbal
             else if (m_Height > 6)
                 tenFlag = 0;
         }
-        #endregion
 
-        #region OnStart()
         public override void OnStart(PartModule.StartState state)
         {
             if (state == StartState.Editor || state == StartState.None) return;
@@ -170,15 +166,13 @@ namespace GPWSKerbal
             ten.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/10");
             ten.audio.loop = false;
         }
-        #endregion
 
-        #region FixedUpdate()
         public void FixedUpdate()
         {
             mGUI.stringChange();
 
             if (!isAvailable) return;
-            if (!mGUI.isGPWSWork) return;
+            if (!mGUI.isGPWSAvailable) return;
             if (FlightGlobals.ActiveVessel.checkLanded() || FlightGlobals.ActiveVessel.checkSplashed()) return;
 
             ResetHeightFlag();
@@ -202,7 +196,7 @@ namespace GPWSKerbal
                     pullUp.audio.Play();
                 }
                 return;
-            }
+            }//Pull up
 
             if (m_Height < 770 && m_Height > 750 && terr_verticalSpeed < 0)
             {
@@ -213,7 +207,7 @@ namespace GPWSKerbal
                     twentyfiveHundredFlag = 1;
                 }
                 return;
-            }
+            }//2500ft
 
             if (m_Height < 310 && m_Height > 290 && terr_verticalSpeed < 0)
             {
@@ -224,7 +218,7 @@ namespace GPWSKerbal
                     thousandflag = 1;
                 }
                 return;
-            }
+            }//2000ft
 
             if (m_Height < 160 && m_Height > 140 && terr_verticalSpeed < 0)
             {
@@ -235,7 +229,7 @@ namespace GPWSKerbal
                     fivehundredflag = 1;
                 }
                 return;
-            }
+            }//500ft
 
             if (m_Height < 127 && m_Height > 107 && terr_verticalSpeed < 0)
             {
@@ -246,7 +240,7 @@ namespace GPWSKerbal
                     fourHundredFlag = 1;
                 }
                 return;
-            }
+            }//400ft
 
             if (m_Height < 97 && m_Height > 77 && terr_verticalSpeed < 0)
             {
@@ -257,7 +251,7 @@ namespace GPWSKerbal
                     threeHundredFlag = 1;
                 }
                 return;
-            }
+            }//300ft
 
             if (m_Height < 68 && m_Height > 48 && terr_verticalSpeed < 0)
             {
@@ -268,7 +262,7 @@ namespace GPWSKerbal
                     twoHundredFlag = 1;
                 }
                 return;
-            }
+            }//200ft
 
             if (m_Height < 35 && m_Height > 20 && terr_verticalSpeed < 0)
             {
@@ -279,7 +273,7 @@ namespace GPWSKerbal
                     hundredflag = 1;
                 }
                 return;
-            }
+            }//100ft
 
             if (m_Height < 18 && m_Height > 14 && terr_verticalSpeed < 0)
             {
@@ -290,7 +284,7 @@ namespace GPWSKerbal
                     fiftyFlag = 1;
                 }
                 return;
-            }
+            }//50ft
 
             if (m_Height < 14 && m_Height > 10.5 && terr_verticalSpeed < 0)
             {
@@ -301,7 +295,7 @@ namespace GPWSKerbal
                     fortyFlag = 1;
                 }
                 return;
-            }
+            }//40ft
 
             if (m_Height < 10.5 && m_Height > 7.5 && terr_verticalSpeed < 0)
             {
@@ -312,7 +306,7 @@ namespace GPWSKerbal
                     thirtyFlag = 1;
                 }
                 return;
-            }
+            }//30ft
 
             if (m_Height < 7.5 && m_Height > 4.5 && terr_verticalSpeed < 0)
             {
@@ -323,7 +317,7 @@ namespace GPWSKerbal
                     twentyFlag = 1;
                 }
                 return;
-            }
+            }//20ft
 
             if (m_Height < 4 && m_Height > 2.9 && terr_verticalSpeed < 0)
             {
@@ -334,12 +328,12 @@ namespace GPWSKerbal
                     tenFlag = 1;
                 }
                 return;
-            }
+            }//10ft
 
             pullUp.audio.Stop();
         }
-        #endregion
 
+        //This function is used to fix the issue that two or more same sounds play at the same time
         public override void OnUpdate()
         {
             if (sActiveModule == null && this.vessel == FlightGlobals.ActiveVessel)
@@ -364,20 +358,9 @@ namespace GPWSKerbal
             base.OnUpdate();
         }
 
-        [KSPEvent(name = "GPWS_GUIDisplayControl", guiActive = true, guiName = "Show GPWS GUI", active = true, category = "GPWS_GUI")]
-        public void DisplayGPWS_GUI()
-        {
-            mGUI.showGUI = true;
-        }
-
-        #region OnGUI()
         public void OnGUI()
         {
-            if (mGUI.showGUI)
-            {
-                mGUI.DrawWindow();
-            }
+            mGUI.DrawWindow();
         }
-        #endregion
     }
 }
