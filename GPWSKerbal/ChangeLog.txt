@@ -1,8 +1,15 @@
+v1.3.1(Beta - No Release Version)
+*Fixed for KSP 1.0.4
+*Added setting config load & save
+Plan
+*Unit of altitude announcements now can be chosen between feet and meters(In Progress)
+*Changed UI of GPWSKerbal(In Progress)
+
 v1.3
 *Fixed for KSP 0.90 Beta
 *Added GPWS Setting Window
 *Changed unit of altitude announcements to feet(Maybe it will be more realistic...you should be more gentle at the runway approach)
-*Replace altitude(sea level) with radar altitude
+*Replaced altitude(sea level) with radar altitude
 *Rebuilt judgement for "WHOOP WHOOP PULL UP"
 *Added altitude announcement for 2500 (Now "TWENTY FIVE HUNDRED" means "2500 feet"...)
 *Removed "TOO LOW TERRAIN" temporarily (It is being rebuilt and will be back in the future)
