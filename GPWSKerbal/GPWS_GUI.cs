@@ -31,9 +31,9 @@ namespace GPWSKerbal
         {
             ApplicationLauncherButton button = null;
             Texture2D iconTexture = null;
-            if (GameDatabase.Instance.ExistsTexture("GPWS/GPWS_Icon"))
+            if (GameDatabase.Instance.ExistsTexture("GPWSKerbal/GPWS_Icon"))
             {
-                iconTexture = GameDatabase.Instance.GetTexture("GPWS/GPWS_Icon", false);
+                iconTexture = GameDatabase.Instance.GetTexture("GPWSKerbal/GPWS_Icon", false);
                 button = ApplicationLauncher.Instance.AddModApplication(onAppLauncherTrue, onAppLauncherFalse,
                     null, null, null, null,
                     ApplicationLauncher.AppScenes.FLIGHT,
@@ -41,7 +41,7 @@ namespace GPWSKerbal
             }
             else
             {
-                Debug.LogError("-------GPWS/GPWS_Icon does not exist-------");
+                Debug.LogError("-------GPWSKerbal/GPWS_Icon does not exist-------");
             }
             return button;
         }
