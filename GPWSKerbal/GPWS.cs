@@ -79,91 +79,91 @@ namespace GPWSKerbal
             pullUp.audio.volume = GameSettings.SHIP_VOLUME;
             pullUp.audio.maxDistance = 10;
             pullUp.audio.Stop();
-            pullUp.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/pullup");
+            pullUp.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/pullup");
             pullUp.audio.loop = false;
 
             twentyfiveHundred.audio = gameObject.AddComponent<AudioSource>();
             twentyfiveHundred.audio.volume = GameSettings.SHIP_VOLUME;
             twentyfiveHundred.audio.maxDistance = 10;
             twentyfiveHundred.audio.Stop();
-            twentyfiveHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/2500");
+            twentyfiveHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/2500");
             twentyfiveHundred.audio.loop = false;
 
             thousand.audio = gameObject.AddComponent<AudioSource>();
             thousand.audio.volume = GameSettings.SHIP_VOLUME;
             thousand.audio.maxDistance = 10;
             thousand.audio.Stop();
-            thousand.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/1000");
+            thousand.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/1000");
             thousand.audio.loop = false;
 
             fivehundred.audio = gameObject.AddComponent<AudioSource>();
             fivehundred.audio.volume = GameSettings.SHIP_VOLUME;
             fivehundred.audio.maxDistance = 10;
             fivehundred.audio.Stop();
-            fivehundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/500");
+            fivehundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/500");
             fivehundred.audio.loop = false;
 
             fourHundred.audio = gameObject.AddComponent<AudioSource>();
             fourHundred.audio.volume = GameSettings.SHIP_VOLUME;
             fourHundred.audio.maxDistance = 10;
             fourHundred.audio.Stop();
-            fourHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/400");
+            fourHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/400");
             fourHundred.audio.loop = false;
 
             threeHundred.audio = gameObject.AddComponent<AudioSource>();
             threeHundred.audio.volume = GameSettings.SHIP_VOLUME;
             threeHundred.audio.maxDistance = 10;
             threeHundred.audio.Stop();
-            threeHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/300");
+            threeHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/300");
             threeHundred.audio.loop = false;
 
             twoHundred.audio = gameObject.AddComponent<AudioSource>();
             twoHundred.audio.volume = GameSettings.SHIP_VOLUME;
             twoHundred.audio.maxDistance = 10;
             twoHundred.audio.Stop();
-            twoHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/200");
+            twoHundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/200");
             twoHundred.audio.loop = false;
 
             hundred.audio = gameObject.AddComponent<AudioSource>();
             hundred.audio.volume = GameSettings.SHIP_VOLUME;
             hundred.audio.maxDistance = 10;
             hundred.audio.Stop();
-            hundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/100");
+            hundred.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/100");
             hundred.audio.loop = false;
 
             fifty.audio = gameObject.AddComponent<AudioSource>();
             fifty.audio.volume = GameSettings.SHIP_VOLUME;
             fifty.audio.maxDistance = 10;
             fifty.audio.Stop();
-            fifty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/50");
+            fifty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/50");
             fifty.audio.loop = false;
 
             forty.audio = gameObject.AddComponent<AudioSource>();
             forty.audio.volume = GameSettings.SHIP_VOLUME;
             forty.audio.maxDistance = 10;
             forty.audio.Stop();
-            forty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/40");
+            forty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/40");
             forty.audio.loop = false;
 
             thirty.audio = gameObject.AddComponent<AudioSource>();
             thirty.audio.volume = GameSettings.SHIP_VOLUME;
             thirty.audio.maxDistance = 10;
             thirty.audio.Stop();
-            thirty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/30");
+            thirty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/30");
             thirty.audio.loop = false;
 
             twenty.audio = gameObject.AddComponent<AudioSource>();
             twenty.audio.volume = GameSettings.SHIP_VOLUME;
             twenty.audio.maxDistance = 10;
             twenty.audio.Stop();
-            twenty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/20");
+            twenty.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/20");
             twenty.audio.loop = false;
 
             ten.audio = gameObject.AddComponent<AudioSource>();
             ten.audio.volume = GameSettings.SHIP_VOLUME;
             ten.audio.maxDistance = 10;
             ten.audio.Stop();
-            ten.audio.clip = GameDatabase.Instance.GetAudioClip("GPWS/Sounds/10");
+            ten.audio.clip = GameDatabase.Instance.GetAudioClip("GPWSKerbal/Sounds/10");
             ten.audio.loop = false;
         }
 
@@ -356,11 +356,6 @@ namespace GPWSKerbal
             }
 
             base.OnUpdate();
-        }
-
-        public void OnGUI()
-        {
-            mGUI.DrawWindow();
         }
     }
 }
