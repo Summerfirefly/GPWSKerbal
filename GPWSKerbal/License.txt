@@ -1,2 +1,6 @@
 This mod follows the license CC-BY-NC-SA
+
 Original author: Cryphonus (http://forum.kerbalspaceprogram.com/threads/43134)
+
+Boeing GPWS Sounds from http://library.flight1.net/?p=450
+Airbus GPWS Sounds from http://www.avsimrus.com/f/fsx-effects-and-addons-85/ground-proximity-warning-system-gpws-33349.html
