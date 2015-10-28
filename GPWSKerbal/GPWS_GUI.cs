@@ -11,8 +11,8 @@ namespace GPWSKerbal
         public Rect windowPosition = new Rect(Screen.width / 4, Screen.height / 4, 10f, 10f);
         int windowID = new System.Random().Next();
         GUIStyle infomation;
-        public string stateInfo = "On", gearInfo = "Normal", terrInfo = "Normal";
-        public bool isGPWSAvailable = true;
+        public string stateInfo = "On", gearInfo = "Normal", terrInfo = "Normal", unit = "Feet";
+        public bool isGPWSAvailable = true, isUnitFeet = true;
 
         private static ApplicationLauncherButton m_ToolbarButton = null;
         private static bool isVisible = false;
@@ -75,9 +75,16 @@ namespace GPWSKerbal
             infomation.normal.textColor = Color.white;
             infomation.fontStyle = FontStyle.Normal;
             infomation.fixedWidth = 230;
-            if (HighLogic.LoadedScene == GameScenes.FLIGHT && isVisible)
+            if (isVisible)
             {
-                windowPosition = GUILayout.Window(windowID, windowPosition, FlightGUI, "GPWS - Flight");
+                if (HighLogic.LoadedScene == GameScenes.FLIGHT)
+                {
+                    windowPosition = GUILayout.Window(windowID, windowPosition, FlightGUI, "GPWS - Flight");
+                }
+                if (HighLogic.LoadedScene == GameScenes.SPACECENTER)
+                {
+                    windowPosition = GUILayout.Window(windowID, windowPosition, SettingsGUI, "GPWS - Settings");
+                }
             }
         }
 
@@ -94,6 +101,28 @@ namespace GPWSKerbal
             }
             GUILayout.EndVertical();
             
+            GUI.DragWindow();
+        }
+
+        public void SettingsGUI(int WindowID)
+        {
+            GUILayout.BeginVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Height Unit", infomation);
+            if(isUnitFeet)
+            {
+                unit = "Feet";
+            }
+            else
+            {
+                unit = "Meters";
+            }
+            isUnitFeet = GUILayout.Toggle(isUnitFeet, unit, HighLogic.Skin.toggle);
+            GUILayout.EndHorizontal();
+
+            GUILayout.EndVertical();
+
             GUI.DragWindow();
         }
     }
